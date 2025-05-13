@@ -1,103 +1,124 @@
-# helloworld
-作业
+# Hello World
+Assignment
 
-## 安装与部署说明
-# 环境准备：
-确保本地已安装以下工具：
-Node.js (推荐版本>= 16.x)
-npm (Node.js 自带) 或 yarn
+## Installation and Deployment Instructions
 
-# 依赖安装：
-1.克隆项目仓库：
-git clone https://github.com/your-repo/books-management-system.git
-cd books-management-system
+### Environment Preparation
+Ensure the following tools are installed locally:
+- **Node.js** (Recommended version >= 16.x)
+- **npm** (Comes with Node.js) or **yarn**
 
-2.安装项目依赖：
-npm install
+### Dependency Installation
+1. **Clone the project repository**:
+   ```bash
+   git clone https://github.com/your-repo/books-management-system.git
+   cd books-management-system
+   ```
 
-# 开发环境启动
-启动开发服务器：
-npm run serve
+2. **Install project dependencies**:
+   ```bash
+   npm install
+   ```
 
-# 访问应用：
-打开浏览器访问 http://localhost:8080
-开发服务器支持热更新，修改代码后页面会自动刷新
+### Starting the Development Environment
+1. **Start the development server**:
+   ```bash
+   npm run serve
+   ```
 
-# 生产环境部署
-1.构建生产环境代码：
-npm run build
+2. **Access the application**:
+   Open a browser and visit [http://localhost:8080](http://localhost:8080).
+   The development server supports hot updates, and the page will automatically refresh after modifying the code.
 
-2.构建产物说明：
-构建后的静态文件会生成在 dist 目录下;
-包含 HTML、CSS、JavaScript、图片等资源;
-所有资源已进行压缩和优化
+### Production Environment Deployment
+1. **Build the production environment code**:
+   ```bash
+   npm run build
+   ```
 
-3.部署到 Web 服务器：
-将 dist 目录下的所有文件复制到你的 Web 服务器根目录，例如：
-Nginx;
-Apache;
-云服务提供商（如 AWS S3、阿里云 OSS）
+2. **Explanation of build artifacts**:
+   - The static files after building will be generated in the `dist` directory.
+   - Include HTML, CSS, JavaScript, images and other resources.
+   - All resources have been compressed and optimized.
 
-## 配置说明
-# 环境变量
-项目使用 .env 文件配置环境变量：
+3. **Deploy to the Web server**:
+   Copy all the files in the `dist` directory to the root directory of your Web server, for example:
+   - **Nginx**
+   - **Apache**
+   - **Cloud service providers** (such as AWS S3, Alibaba Cloud OSS)
 
-.env.development：开发环境配置
-.env.production：生产环境配置
-API 接口地址
-如需修改 API 接口地址，可在 .env 文件中修改 VUE_APP_API_BASE_URL 变量。
-## 常见问题解答
-1. 安装依赖时出现网络问题
-问题现象：npm install 或 yarn install 过程中下载依赖失败
-解决方案：
-使用国内镜像源：
+---
 
-npm install --registry=https://registry.npmmirror.com
+## Configuration Instructions
 
-或配置 npm 镜像：
+### Environment Variables
+The project uses `.env` files to configure environment variables:
+- `.env.development`: Development environment configuration
+- `.env.production`: Production environment configuration
 
-npm config set registry https://registry.npmmirror.com
+#### Modify the API Interface Address
+If you need to modify the API interface address, you can modify the `VUE_APP_API_BASE_URL` variable in the `.env` file.
 
-2. 启动开发服务器失败
-问题现象：执行 npm run serve 后浏览器无法访问 http://localhost:8080
-解决方案：
-检查端口是否被占用：
+---
 
-netstat -tulpn | grep :8080
+## Frequently Asked Questions
 
-修改端口：在 vue.config.js 中添加以下配置：
+### 1. Network issues when installing dependencies
+**Problem phenomenon**: Downloading dependencies fails during `npm install` or `yarn install`.
+**Solutions**:
+- Use a domestic mirror source:
+  ```bash
+  npm install --registry=https://registry.npmmirror.com
+  ```
+- Or configure the npm mirror:
+  ```bash
+  npm config set registry https://registry.npmmirror.com
+  ```
 
-module.exports = {
-  devServer: {
-    port: 8081 // 修改为其他端口
+### 2. Failure to start the development server
+**Problem phenomenon**: The browser cannot access [http://localhost:8080](http://localhost:8080) after executing `npm run serve`.
+**Solutions**:
+- Check if the port is occupied:
+  ```bash
+  netstat -ano | findstr :8080
+  ```
+- Modify the port: Add the following configuration in `vue.config.js`:
+  ```javascript
+  module.exports = {
+    devServer: {
+      port: 8081 // Modify to another port
+    }
   }
-}
+  ```
 
-3. 构建后页面空白
-问题现象：生产环境部署后页面空白，控制台报错
-解决方案：
-检查 vue.config.js 中的 publicPath 配置是否正确：
+### 3. Blank page after building
+**Problem phenomenon**: The page is blank and there are errors in the console after deploying to the production environment.
+**Solutions**:
+- Check if the `publicPath` configuration in `vue.config.js` is correct:
+  ```javascript
+  module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? '/' : '/'
+  }
+  ```
+- Ensure that the server configuration is correct and supports single-page application routing.
 
-module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/'
-}
+### 4. Dependency version conflicts
+**Problem phenomenon**: Version conflict errors occur when installing dependencies.
+**Solutions**:
+- Delete `node_modules` and `package-lock.json` (or `yarn.lock`):
+  ```bash
+  rm -rf node_modules package-lock.json
+  ```
+- Reinstall the dependencies:
+  ```bash
+  npm install
+  ```
 
-确保服务器配置正确，支持单页面应用路由
-4. 依赖版本冲突
-问题现象：安装依赖时出现版本冲突错误
-解决方案：
-删除 node_modules 和 package-lock.json（或 yarn.lock）
-重新安装依赖：
-
-npm install
-
-
-5. ESLint 检查失败
-问题现象：开发过程中代码无法通过 ESLint 检查
-解决方案：
-自动修复可修复的错误：
-
-npm run lint -- --fix
-
-
-修改 .eslintrc.js 配置文件调整规则
+### 5. ESLint check fails
+**Problem phenomenon**: The code fails to pass the ESLint check during development.
+**Solutions**:
+- Automatically fix the fixable errors:
+  ```bash
+  npm run lint -- --fix
+  ```
+- Modify the `.eslintrc.js` configuration file to adjust the rules. 
