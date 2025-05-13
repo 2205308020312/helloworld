@@ -34,11 +34,11 @@ export default {
   },
   methods: {
     bookSubmit(title, author) {
-      // Send new book data to the parent component
+      // Emit the new book data to the parent component
       this.$emit('add-book', { title, author });
-      // Or call the backend API
+      // Optionally, you can send the data to a backend API here
       // axios.post('/api/books', { title, author })
-      // Clear the input fields
+      // Clear the input fields after submission
       this.bookTitle = '';
       this.bookAuthor = '';
     }
