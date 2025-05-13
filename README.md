@@ -67,6 +67,7 @@ This is a simple front-end implementation of a book management system built usin
    - User modifies information and submits  
    - Returns to BookList to show the updated book information  
 
+<<<<<<< HEAD
 4. **Delete a Book**:  
    - User clicks the "Delete" button for a book in BookList  
    - The book is removed from the list  
@@ -93,3 +94,5 @@ This is a simple front-end implementation of a book management system built usin
 - Add book categorization/search functionality  
 - Include user authentication features  
 - Optimize responsive layout
+=======
+>>>>>>> 33228a00fe25a578ba90283e72f66a95cc7cd617
